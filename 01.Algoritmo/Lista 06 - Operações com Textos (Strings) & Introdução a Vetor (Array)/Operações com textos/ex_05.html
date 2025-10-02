@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>5. Substituidor de Caracteres</h1>
+
+    <label for="input_senha">Digite uma senha:</label>
+    <input id="input_senha" type="text" oninput="substituir()">
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function substituir() {
+        var senha = input_senha.value;
+        div_mensagem.innerHTML = `
+        Senha forte: ${senha.replaceAll('a','@').replaceAll('A','@').replaceAll('e','3').replaceAll('E','3')}`;
+    }
+</script>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>7. Senha Forte ou Fraca</h1>
+
+    <label for="input_senha">Insira uma senha:</label>
+    <input id="input_senha" type="password" oninput="aparecer()">
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function aparecer() {
+        var senha = input_senha.value;
+
+        if (senha.length >= 8 && 
+            senha != senha.toLowerCase() && 
+            senha != senha.toUpperCase()) {
+            
+            div_mensagem.innerHTML = `<b>Forte</b>`;
+
+        } else if ((senha.length >= 8 && senha != senha.toLowerCase()) || 
+                    (senha.length >= 8 && senha != senha.toUpperCase()) || 
+                    (senha != senha.toLowerCase() && senha != senha.toUpperCase())) {
+            
+            div_mensagem.innerHTML = `<b>Média</b>`;
+
+        } else if (senha.length >= 8 || senha != senha.toLowerCase() || senha != senha.toUpperCase()) {
+
+            div_mensagem.innerHTML = `<b>Fraca</b>`;
+                        
+        } else {
+            div_mensagem.innerHTML = `<b>Insegura</b>`;
+        }
+    }
+</script>

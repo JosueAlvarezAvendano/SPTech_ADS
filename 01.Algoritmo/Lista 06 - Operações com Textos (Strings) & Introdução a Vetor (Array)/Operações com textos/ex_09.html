@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>(DESAFIO) 9. Super Jogo da Palavra Secreta</h1>
+
+    <label for="input_letra">Insira uma letra:</label>
+    <input id="input_letra" type="text">
+    <br><br>
+    <button onclick="verificar">Verificar Letra</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    var palavra = `Aurélio`,
+        c = palavra.length;
+
+    alert(`Palavra secreta definida! Descubra todos os ${palavra.length} caracteres!`);
+
+    function verificar() {
+        var letra = input_letra.value;
+
+        if (palavra.includes(letra)) {
+            div_mensagem.innerHTML = `O caractere ${letra} aparece na palavra secreta! Faltam ${c - 1} caracteres`;
+            c -= 1;
+        } else {
+            
+        }
+    }
+</script>

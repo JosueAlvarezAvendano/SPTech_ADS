@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>6. Observador de Índices</h1>
+
+    <label for="input_frase">Insira uma frase:</label>
+    <input id="input_frase" type="text" oninput="aparecer()">
+    <br><br>
+    <label for="input_posicao">Insira o número da letra que você deseja ver:</label>
+    <input id="input_posicao" type="text" oninput="aparecer()">
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function aparecer() {
+        var frase = input_frase.value,
+            posicao = Number(input_posicao.value);
+        
+        if (posicao <= 0) {
+            div_mensagem.innerHTML = `A primeira letra é: ${frase[0]}<br>`;
+            div_mensagem.innerHTML += `A última letra é: ${frase[frase.length - 1]}<br>`;
+        } else {
+            div_mensagem.innerHTML = `A primeira letra é: ${frase[0]}<br>`;
+            div_mensagem.innerHTML += `A ${posicao}ª letra é: ${frase[posicao - 1]}<br>`;
+            div_mensagem.innerHTML += `A última letra é: ${frase[frase.length - 1]}<br>`;
+        }
+    }
+</script>

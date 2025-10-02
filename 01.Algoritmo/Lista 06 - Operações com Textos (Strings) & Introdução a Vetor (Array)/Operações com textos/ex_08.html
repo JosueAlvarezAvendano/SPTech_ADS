@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>8. Jogo da Palavra Secreta</h1>
+    <label for="input_letra">Insira letras:</label>
+    <input id="input_letra" type="text">
+    <br><br>
+    <button onclick="verificar()">Verificar Letras</button>
+    <br><br>
+    <div id="div_palavra"></div>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        var letra = input_letra.value,
+            palavra = `hello`;
+        
+        if (palavra.includes(letra)) {
+            div_mensagem.innerHTML = `A letra ${letra} aparece na palavra secreta!`;
+        } else {
+            div_mensagem.innerHTML = `A letra ${letra} não aparece na palavra secreta!`;
+        }
+        
+    }
+</script>
