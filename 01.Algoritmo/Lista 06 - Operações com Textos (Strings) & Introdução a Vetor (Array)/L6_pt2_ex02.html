@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>2. Diário de Viagens: Do Primeiro ao Último Destino</h1>
+
+    <label for="input_destino">Destino de viagem:</label>
+    <input id="input_destino" type="text">
+    <br><br>
+    <button onclick="adicionar()">Adicionar</button>
+    <button onclick="primeira()">Primeira Viagem</button><br><br>
+    <button onclick="terceira()">Terceira Viagem</button>
+    <button onclick="ultima()">Última Viagem</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    var destinos = [];
+
+    function adicionar() {
+        var destino = input_destino.value;
+        destinos.push(destino);   
+    }
+
+    function primeira() {
+        if (destinos.length != 0) {
+            div_mensagem.innerHTML = `${destinos[0]}`;
+        } else {
+            div_mensagem.innerHTML = `Ainda não viajou`;
+        }
+    }
+
+    function terceira() {
+        if (destinos.length < 2) {
+            div_mensagem.innerHTML = `Ainda fez a terceira viagem`;
+        } else {
+            div_mensagem.innerHTML = `${destinos[2]}`;
+        }
+    }
+
+    function ultima() {
+        if (destinos.length != 0) {
+            div_mensagem.innerHTML = `${destinos[destinos.length - 1]}`;
+        } else {
+            div_mensagem.innerHTML = `Ainda não viajou`;
+        }
+    }
+</script>
