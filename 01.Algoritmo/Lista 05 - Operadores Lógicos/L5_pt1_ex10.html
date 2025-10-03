@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Recarga Fidelidade Metrô: Economize com Descontos Especiais!</h1>
+
+    <label for="input_QtPassagem">Insira a quatidade de passagens que deseja adquirir:</label>
+    <input id="input_QtPassagem" type="text">
+    <br><br>
+    <button onclick="comprar()">Comprar</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function comprar() {
+        var QtPassagem = Number(input_QtPassagem.value);
+
+        if (QtPassagem >= 8 && QtPassagem <= 50 ) {
+            if (QtPassagem >= 8 && QtPassagem <= 19) {
+                var ValorPassagem = (QtPassagem * 4.40) * 0.97;
+            } else if (QtPassagem >= 20 && QtPassagem <= 49) {
+                var ValorPassagem = (QtPassagem * 4.40) * 0.95;
+            } else {
+                var ValorPassagem = (QtPassagem * 4.40) * 0.93;
+            }
+            div_mensagem.innerHTML = `Total a pagar: R$${ValorPassagem.toFixed(2)}`;
+        } else {
+            alert(`Quantidade inválida para o Fidelidade!`);
+        }
+    }
+</script>

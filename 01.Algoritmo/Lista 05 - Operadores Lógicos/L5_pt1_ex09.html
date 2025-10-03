@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Seleção de Pilotos: Você Tem a Altura Ideal?</h1>
+
+    <label for="input_alturaMinima">Insira o valor de altura mínima:</label>
+    <input id="input_alturaMinima" type="text">
+    <br><br>
+    <label for="input_alturaMaxima">Insira o valor de altutra máxima:</label>
+    <input id="input_alturaMaxima" type="text">
+    <br><br><br>
+    <label for="input_nome">Insira o nome do candidato:</label>
+    <input id="input_nome" type="text">
+    <br>
+    <label for="input_altura">Insira a altura do candidato:</label>
+    <input id="input_altura" type="text">
+    <br><br>
+    <button onclick="verificar()">Verificar Candidado</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        var alturaMinima = Number(input_alturaMinima.value),
+            alturaMaxima = Number(input_alturaMaxima.value),
+            nome = input_nome.value,
+            altura = Number(input_altura.value);
+
+        if (alturaMinima > 1 && alturaMaxima > alturaMinima) {
+            if (altura >= alturaMinima && altura <= alturaMaxima) {
+                div_mensagem.innerHTML += `O candidato ${nome}, com altura de ${altura} metros, participará do processo de seleção de piloto<br><br>`;
+            } else {
+                div_mensagem.innerHTML += `Infelizmente, o candidato ${nome}, com altura de ${altura} metros, não atende os requisitos da seleção<br><br>`;
+            }
+        } else {
+            alert("Intervalo da altura de seleção é inválida! A altura inicial deve ser maior que 1 e a altura final deve ser maior que a altura inicial");
+        }
+    }
+</script>
