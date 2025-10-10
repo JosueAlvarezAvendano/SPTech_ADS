@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>7. S2 Pares</h1>
+
+    <button onclick="contar()">S2 Pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function contar() {
+        var num = 0,
+            mensagem = ``;
+
+        while (num <= 100) {
+            mensagem += `${num}<br>`;
+            num += 2;
+        }
+
+        div_mensagem.innerHTML = `${mensagem}`;
+    }
+</script>

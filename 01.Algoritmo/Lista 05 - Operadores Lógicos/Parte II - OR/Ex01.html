@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Juliane Joada e Suas Frutas Preferidas</h1>
+
+    <label for="input_fruta">Informa a fruta que chegou na mesa:</label>
+    <input id="input_fruta" type="text">
+    <br><br>
+    <button onclick="verificar()">Vai comer?</button>
+</body>
+</html>
+<script>
+    function verificar() {
+        var fruta = input_fruta.value;
+
+        if (fruta == `Abacaxi` || fruta == `Uva`) {
+            alert(`Sim, vai comer ${fruta}`);
+        } else {
+            alert(`A fruta ${fruta} ela não come`);
+        }
+    }
+</script>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>10. Pares no Intervalo</h1>
+
+    <label for="input_inicio">Inicio da contagem:</label>
+    <input id="input_inicio" type="text"><br><br>
+    <label for="input_fim">Fim da contagem:</label>
+    <input id="input_fim" type="text"><br><br>
+
+    <button onclick="pares()">S2 Pares</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function pares() {
+        var inicio = Number(input_inicio.value),
+            cont = inicio,
+            fim = Number(input_fim.value),
+            mensagem = ``;
+
+        while (cont <= fim) {
+            if (cont % 2 == 0) {
+                mensagem += `${cont}<br>`;
+            }
+            cont += 1;
+        }
+
+        div_mensagem.innerHTML = `${mensagem}`;
+    }
+</script>

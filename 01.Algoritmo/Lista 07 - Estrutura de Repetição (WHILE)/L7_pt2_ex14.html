@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>14. É tri/penta!</h1>
+
+    <label for="input_numInicio">Inicio da contagem:</label>
+    <input id="input_numInicio" type="text"><br><br>
+
+    <label for="input_numFim">Fim da contagem:</label>
+    <input id="input_numFim" type="text"><br><br>
+
+    <button onclick="contar()">Curto 3 e 5!</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function contar() {
+        var numInicio = Number(input_numInicio.value),
+            numFim = Number(input_numFim.value),
+            cont = numInicio,
+            mensagem = ``;
+        
+        while (cont <= numFim) {
+            if (cont % 3 == 0 && cont % 5 == 0) {
+                mensagem += `É TRI!É PENTA!<br>`;
+            } else if(cont % 3 == 0) {
+                mensagem += `É TRI!<br>`;
+            } else if(cont % 5 == 0) {
+                mensagem += `É PENTA!<br>`;
+            } else {
+                mensagem += `${cont}<br>`;
+            }
+            cont += 1;
+        }
+        div_mensagem.innerHTML = mensagem;
+
+    }
+</script>

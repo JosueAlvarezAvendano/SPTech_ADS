@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Critérios de Preferência de Augusto Bivio</h1>
+
+    <label for="input_empresa">Insira o nome da empresa:</label>
+    <input id="input_empresa" type="text">
+    <br><br>
+    <label for="input_valorBolsa">Insira o valor da Empresa:</label>
+    <input id="input_valorBolsa" type="text">
+    <br><br>
+    <label for="input_valorVR">Insira o valor do VR:</label>
+    <input id="input_valorVR" type="text">
+    <br><br>
+    <label for="input_tempo">Insira o tempo de deslocamento da Empresa até a SPTech:</label>
+    <input id="input_tempo" type="text">
+    <br><br><button onclick="verificar()">É preferida?</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verificar() {
+        var empresa = input_empresa.value,
+            valorBolsa = Number(input_valorBolsa.value),
+            valorVR = Number(input_valorVR.value),
+            tempo = Number(input_tempo.value);
+        
+        if (valorBolsa >= 1800 || valorVR >= 20 || tempo <= 30) {
+            div_mensagem.innerHTML = `A empresa ${empresa} é uma de suas preferências`
+        } else {
+            div_mensagem.innerHTML = `A empresa ${empresa} está fora da sua lista`
+        }
+    }
+</script>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Processo Seletivo Mentes Brilhantes</h1>
+
+    <label for="input_enem">Insira a nota do ENEM:</label>
+    <input id="input_enem" type="text">
+    <br><br>
+    <label for="input_vestibular">Insira a nota do Vestibular:</label>
+    <input id="input_vestibular" type="text">
+    <br><br>
+    <button onclick="avaliacao()">Avaliação</button>
+</body>
+</html>
+<script>
+    function avaliacao() {
+        var enem = Number(input_enem.value),
+            vestibular = Number(input_vestibular.value);
+
+        if (enem >= 800 || vestibular >= 700) {
+            alert("Parabéns! Aprovado");
+        } else {
+            alert("Tente semestre que vem!");
+        }
+    }
+</script>

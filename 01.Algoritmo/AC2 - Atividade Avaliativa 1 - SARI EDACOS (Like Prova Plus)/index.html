@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARI EDACOS</title>
+    <style>
+        /* body {
+            background-image: url(https://images.pexels.com/photos/5486148/pexels-photo-5486148.jpeg);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        } */
+
+        /* .parte1 {
+            height: 300px;
+            width: 250px;
+            border: 2px solid black;
+            border-radius: 10px;
+        } */
+    </style>
+</head>
+<body>
+    <h1>SARI EDACOS</h1>
+
+    <div class="parte1" id="parte1">
+        <label for="input_salarioInicial">Salário inicial:</label>
+        <input id="input_salarioInicial" type="text"><br><br>
+        
+        <label for="input_salarioFinal">Salário final:</label>
+        <input id="input_salarioFinal" type="text"><br><br>
+        
+        <label for="input_mesCorrente">Escolha o mês corrente:</label>
+        <select id="input_mesCorrente">
+            <option selected disabled>Mês corrente</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+        </select><br><br>
+        <button onclick="registrarParametros()">Registrar Parâmetros</button>
+    </div>
+
+</body>
+</html>
+<script>
+    function registrarParametros() {
+        var salarioInicial = Number(input_salarioInicial.value),
+            salarioFinal = Number(input_salarioFinal.value),
+            mesCorrente = Number(input_mesCorrente.value);
+        
+        if (salarioInicial <3000 || salarioFinal > (4 * salarioInicial) || (mesCorrente < 1 || mesCorrente > 12)) {
+            alert(`ERRO! 
+Salario incial precisar ser acima de R$ 3.000,00
+Salario final não pode ultrapassar 4X o valor do salario inicial
+Mês corrente tem que ser entre Janeiro e Dezembro`)
+            input_salarioInicial.value = '';
+            input_salarioFinal.value = '';
+            input_mesCorrente.value = '';
+        } else {
+            parte1.style.display = "none";
+            parte2.style.display = "block";
+        }
+    }
+</script>

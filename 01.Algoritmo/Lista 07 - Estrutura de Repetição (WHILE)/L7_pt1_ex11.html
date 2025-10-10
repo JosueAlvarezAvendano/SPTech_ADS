@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>11. Tabuada Colorida</h1>
+
+    <label for="input_numero">Qual tabuada você quer ver na tela:</label>
+    <select id="input_numero">
+        <option selected disabled>Número</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+    </select><br><br>
+    <label for="input_fim">Até qual número você quer a tabada:</label>
+    <input id="input_fim" type="text"><br><br>
+    <button onclick="verTabuada()">Ver Tabuada</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function verTabuada() {
+        var numero = Number(input_numero.value),
+            fim = Number(input_fim.value),
+            cont = 1,
+            mensagem = ``;
+
+        while (cont <= fim) {
+            if (cont % 2 == 0) {
+                mensagem += `<span style="color: blue">${numero} X ${cont} = ${numero * cont}</span><br>`;
+            } else {
+                mensagem += `<span style="color: red">${numero} X ${cont} = ${numero * cont}</span><br>`;
+            }
+            cont += 1;
+        }
+        div_mensagem.innerHTML = `${mensagem}`;
+    }
+</script>

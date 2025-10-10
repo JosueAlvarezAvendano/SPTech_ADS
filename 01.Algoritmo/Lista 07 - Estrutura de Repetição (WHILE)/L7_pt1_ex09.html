@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>9. Viva o 7!</h1>
+
+    <label for="input_numero">Insira um número entre 0 e 200:</label>
+    <input id="input_numero" type="text"><br><br>
+
+    <button onclick="multiplos5()">Adoro múltiplos de 5</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function multiplos5() {
+        var numero = Number(input_numero.value),
+            cont = 0,
+            mensagem = ``;
+        
+        while (cont <= numero) {
+            if (cont % 7 == 0) {
+                mensagem += `${cont}<br>`;
+            }
+            cont += 1;
+        }
+        div_mensagem.innerHTML = `${mensagem}`;
+    }
+</script>

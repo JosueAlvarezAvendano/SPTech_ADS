@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>2. Frase Repetitiva</h1>
+
+    <button onclick="frase()">Diga algo sobre a matéria de Algoritmos</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function frase() {
+        var c = 1;
+        while (c <= 7) {
+            div_mensagem.innerHTML += `A culpa não é do algoritmo.<br>`;
+
+            c += 1;
+        }
+    }
+</script>
