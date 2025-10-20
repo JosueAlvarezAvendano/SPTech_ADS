@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>22. Contagem Simples</h1>
+
+    <label>Limite inferior (maior que 1):</label>
+    <input id="input_inferior" type="text"><br><br>
+
+    <label>Limite superior (menor que 100 e maior que o limite inferior):</label>
+    <input id="input_superior" type="text"><br><br>
+
+    <label>Número para teste de divisibilidade (entre 3 e 10):</label>
+    <input id="input_divisor" type="text"><br><br>
+
+    <button onclick="contar()">Contar</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function contar() {
+        var inferior = Number(input_inferior.value),
+            superior = Number(input_superior.value),
+            divisor = Number(input_divisor.value),
+            cont = inferior,
+            mensagem = "",
+            numExibidos = 0,
+            soma = 0,
+            maior = inferior,
+            menor = superior;
+
+        if (inferior > 1 && superior <= 100 && superior > inferior) {
+            if (divisor >= 3 && divisor <= 10) {
+                while (cont <= superior) {
+                    if (cont % divisor == 0) {
+                        mensagem += `${cont}, `;
+                        numExibidos += 1;
+                        soma += cont;
+                        if (cont > maior) {
+                            maior = cont
+                        }
+                        if (cont < menor) {
+                            menor = cont
+                        }
+                    }
+                    cont++;
+                }
+                mensagem += `<br><br>
+                    <b>QUANTIDADE TOTAL DE NÚMEROS EXIBIDOS:</b> ${numExibidos}<br><br>
+                    <b>SOMATÓRIO DOS NÚMEROS EXIBIDOS:</b> ${soma}<br><br>
+                    <b>MÉDIA DOS NÚMEROS EXIBIDOS:</b> ${(soma / numExibidos).toFixed(2)}<br><br>
+                    <b>MAIOR NÚMERO EXIBIDO:</b> ${maior}<br><br>
+                    <b>MENOR NÚMERO EXIBIDO:</b> ${menor} 
+                `;
+            }
+        }
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

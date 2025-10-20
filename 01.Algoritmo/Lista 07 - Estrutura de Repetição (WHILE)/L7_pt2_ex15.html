@@ -20,15 +20,15 @@
         var tempo = Number(input_tempo.value),
             cont = 1,
             mensagem = ``;
-        
+
         while (cont <= 30) {
-            if () {
-                
+            if ((cont - 1) % tempo == 0) {
+                mensagem += `Dia ${cont} - Musculação<br>`
+            } else {
+                mensagem += `Dia ${cont} - Comer, dormir etc<br>`;
             }
-            mensagem += `Dia ${cont} - Comer, dormir etc<br>`;
             cont += 1;
         }
-
         div_mensagem.innerHTML = mensagem;
     }
 </script>

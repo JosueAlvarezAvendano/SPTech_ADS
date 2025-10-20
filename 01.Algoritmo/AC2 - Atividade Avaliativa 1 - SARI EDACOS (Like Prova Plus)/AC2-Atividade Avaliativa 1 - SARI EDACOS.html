@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SARI EDACOS - Controle de Vendas</title>
+</head>
+
+<body>
+    <h1>SARI EDACOS - Controle de Vendas</h1>
+
+    <!-- PARTE 1 -->
+    <div id="parte1">
+        <h3>Registrar Parâmetros</h3>
+        <label for="input_salInicial">Salário Inicial:</label>
+        <input id="input_salInicial" type="text"><br><br>
+
+        <label for="input_salFinal">Salário Final:</label>
+        <input id="input_salFinal" type="text"><br><br>
+
+        <label for="input_MesCorrente">Mês Corrente:</label>
+        <select id="input_MesCorrente">
+            <option selected disabled value="">Mês Corrente</option>
+            <option value="1">Janeiro</option>
+            <option value="2">Fevereiro</option>
+            <option value="3">Março</option>
+            <option value="4">Abril</option>
+            <option value="5">Maio</option>
+            <option value="6">Junho</option>
+            <option value="7">Julho</option>
+            <option value="8">Agosto</option>
+            <option value="9">Setembro</option>
+            <option value="10">Outubro</option>
+            <option value="11">Novembro</option>
+            <option value="12">Dezembro</option>
+        </select> <br><br>
+
+        <button onclick="registrarParametros()">Registrar Parâmetros</button>
+        <div id="mensagemParte1"></div>
+    </div>
+
+    <!-- PARTE 2 -->
+    <div id="parte2" style="display: none;">
+        <h3>Pagar Salário</h3>
+        <label for="input_nomeFuncionario">Nome do Funcionário:</label>
+        <input id="input_nomeFuncionario" type="text"><br><br>
+
+        <label for="input_salario">Salário</label>
+        <input id="input_salario" type="text"><br><br>
+
+        <h4>Quantidade Comprada</h4>
+        <label for="input_cadeiraPraia">Cadeira Praia:</label>
+        <input id="input_cadeiraPraia" type="text"><br><br>
+
+        <label for="input_cadeiraJardim">Cadeira Jardim:</label>
+        <input id="input_cadeiraJardim" type="text"><br><br>
+
+        <label for="input_cadeiraPesca">Cadeira Pesca:</label>
+        <input id="input_cadeiraPesca" type="text"><br><br>
+
+        <button onclick="pagarSalario()">Pagar Salário</button>
+        <button onclick="encerrarDia()">Encerrar o Dia</button>
+
+        <div id="mensagemParte2"></div>
+    </div>
+
+    <!-- PARTE 3 - Relatório do Dia -->
+    <div id="parte3" style="display: none;">
+        <h3>Relatório do Dia</h3>
+        <div id="relatorioDia"></div>
+    </div>
+
+</body>
+
+</html>
+<script>
+    var salarioInicial = 0,
+        salarioFinal = 0,
+        mesCorrente = 0;
+    var valorPraia = 100,
+        valorJardim = 120,
+        valorPesca = 80;
+
+    var totalQtdPraia = 0, totalQtdJardim = 0, totalQtdPesca = 0;
+    var totalVendaPraia = 0, totalVendaJardim = 0, totalVendaPesca = 0
+
+    function registrarParametros() {
+        salarioFinal = input_salFinal.value;
+        mesCorrente = input_MesCorrente.value;
+        salarioInicial = input_salInicial.value;
+
+        if (salarioInicial <= 3000) {
+            mensagemParte1.innerHTML = "Salário inicial deve ser maior que 3000!";
+        } else if (salarioFinal >= salarioInicial * 4) {
+            mensagemParte1.innerHTML = "Salário final deve ser menor que quatro vezes o salário inicial!";
+        } else {
+            parte1.style.display = 'none';
+            parte2.style.display = 'block';
+        }
+    }
+
+    function pagarSalario() {
+        var nome = input_nomeFuncionario.value,
+            salario = Number(input_salario.value),
+            qtdPraiaF = Number(input_cadeiraPraia.value),
+            qtdJardimF = Number(input_cadeiraJardim.value),
+            qtdPescaF = Number(input_cadeiraPesca.value);
+
+        // Validações - Parte 2
+        if (nome == "") {
+            mensagemParte2.innerHTML = `Nome obrigatório!`;
+        } else if (salario < salarioInicial) {
+            mensagemParte2.innerHTML = `Salário deve ser maior ou igual ao salário inicial!`;
+        } else if ((qtdPraiaF < 0 || qtdPraiaF == "") || (qtdJardimF < 0 || qtdJardimF == "") || (qtdPescaF < 0 || qtdPescaF == "")) {
+            mensagemParte2.innerHTML = `Quantidades não podem ser vazias ou negativas!`;
+        }
+
+        // Cálculo valores iniciais
+        var totalPraiaF = qtdPraiaF * valorPraia;
+        var totalJardimF = qtdJardimF * valorJardim;
+        var totalPescaF = qtdPescaF * valorPesca;
+
+        var descontoJardim = 0;
+        var descontoPesca = 0;
+
+        // Primeiro desconto
+        if ((mesCorrente >= 1 && mesCorrente <= 5) || (mesCorrente >= 10 && mesCorrente <= 12)) {
+            descontoJardim = totalJardimF * 0.072;
+            totalJardimF -= descontoJardim;
+        }
+        if ((mesCorrente >= 4 && mesCorrente <= 10) && qtdPescaF > 3) {
+            descontoPesca = totalPescaF * 0.0609;
+            totalPescaF -= descontoPesca;
+        }
+
+        var totalCompra = totalPraiaF + totalJardimF + totalPescaF;
+        var descontoExtra = 0;
+
+        // Segundo desconto
+        if (totalCompra > 400 && qtdPraiaF == 0 && qtdPescaF > 0) {
+            descontoExtra = totalCompra * 0.025;
+            totalCompra -= descontoExtra;
+        }
+
+
+        var maior = totalPraiaF;
+        if (totalJardimF > maior) maior = totalJardimF;
+        if (totalPescaF > maior) maior = totalPescaF;
+
+        if (maior == totalJardimF) {
+            var descJardimExtra = totalCompra * 0.055;
+            totalCompra -= descJardimExtra;
+            descontoExtra += descJardimExtra;
+        }
+
+        // Critério de aceite da venda de cadeira
+        var limite;
+        var podeComprar = true;
+
+        if (salario >= salarioInicial && salario <= salarioFinal) {
+            limite = salario * 0.305;
+        } else {
+            limite = salario * 0.2075;
+        }
+
+        if (totalCompra > limite) {
+            alert("Compra excede limite permitido pelo salário!");
+            podeComprar = false;
+        }
+
+        if (podeComprar) {
+            totalQtdPraia += qtdPraiaF;
+            totalQtdJardim += qtdJardimF;
+            totalQtdPesca += qtdPescaF;
+
+            totalVendaPraia += totalPraiaF;
+            totalVendaJardim += totalJardimF;
+            totalVendaPesca += totalPescaF;
+            var salarioLiquido = salario - totalCompra;
+
+            // Extrato detalhado
+            var extrato = `
+        <h3>Extrato do Funcionário</h3>
+        Nome: ${nome}<br>
+        Salário Bruto: R$ ${salario.toFixed(2)}<br>
+        Total Compra: R$ ${totalCompra.toFixed(2)}<br>
+        Salário Líquido: R$ ${salarioLiquido.toFixed(2)}<br><br>
+
+        Detalhes das Compras:<br>
+        Cadeira Praia: ${qtdPraiaF} x R$ ${valorPraia} = R$ ${totalPraiaF.toFixed(2)}<br>
+        Cadeira Jardim: ${qtdJardimF} x R$ ${valorJardim} = R$ ${(totalJardimF + descontoJardim).toFixed(2)} - Desconto: R$ ${descontoJardim.toFixed(2)}<br>
+        Cadeira Pesca: ${qtdPescaF} x R$ ${valorPesca} = R$ ${(totalPescaF + descontoPesca).toFixed(2)} - Desconto: R$ ${descontoPesca.toFixed(2)}<br>
+        Descontos Extra: R$ ${descontoExtra.toFixed(2)}<br><br>
+        `;
+            mensagemParte2.innerHTML = extrato;
+
+            var salarioInteiro = Math.floor(salarioLiquido);
+            var cedulas = { 200: 0, 50: 0, 20: 0, 5: 0, 1: 0 };
+            var restante = salarioInteiro;
+            var notas = [200, 50, 20, 5, 1];
+            for (var i = 0; i < notas.length; i++) {
+                var nota = notas[i];
+                cedulas[nota] = Math.floor(restante / nota);
+                restante = restante % nota;
+            }
+
+            mensagemParte2.innerHTML += `<h4>Cédulas para pagamento:</h4>
+        200: ${cedulas[200]}<br>
+        50: ${cedulas[50]}<br>
+        20: ${cedulas[20]}<br>
+        5: ${cedulas[5]}<br>
+        1: ${cedulas[1]}<br>`;
+        }
+    }
+    function encerrarDia() {
+        // Calcula totais
+        var totalGeralVenda = totalVendaPraia + totalVendaJardim + totalVendaPesca;
+        var totalGeralQtd = totalQtdPraia + totalQtdJardim + totalQtdPesca;
+
+        // Cria relatório usando divs
+        var relatorio = `
+        <div style="font-weight:bold;">Cadeira - Quantidade - Valor Total - % Valor - % Quantidade</div>
+        <div>Praia: ${totalQtdPraia} - R$ ${totalVendaPraia.toFixed(2)} - ${(totalVendaPraia / totalGeralVenda * 100 || 0).toFixed(2)}% - ${(totalQtdPraia / totalGeralQtd * 100 || 0).toFixed(2)}%</div>
+        <div>Jardim: ${totalQtdJardim} - R$ ${totalVendaJardim.toFixed(2)} - ${(totalVendaJardim / totalGeralVenda * 100 || 0).toFixed(2)}% - ${(totalQtdJardim / totalGeralQtd * 100 || 0).toFixed(2)}%</div>
+        <div>Pesca: ${totalQtdPesca} - R$ ${totalVendaPesca.toFixed(2)} - ${(totalVendaPesca / totalGeralVenda * 100 || 0).toFixed(2)}% - ${(totalQtdPesca / totalGeralQtd * 100 || 0).toFixed(2)}%</div>
+        `;
+
+        // Mostra a div e insere relatório
+        parte3.style.display = 'block';
+        relatorioDia.innerHTML = relatorio;
+
+        // Esconde parte2 e bloqueia novas vendas
+        parte2.style.display = 'none';
+        alert("Dia encerrado! Relatório gerado.");
+    }
+
+</script>

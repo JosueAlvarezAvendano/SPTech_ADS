@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Doceria do Dori Valdossin</title>
+</head>
+<body>
+  <h1>Doceria Gourmet</h1>
+
+  <h3>Quantidade de Doces</h3>
+  Macarons: <input type="number" id="qtdMacaron"><br><br>
+  Brigadeiros Gourmets: <input type="number" id="qtdBrigadeiro"><br><br>
+  Cupcakes: <input type="number" id="qtdCupcake"><br><br>
+  Cheesecakes: <input type="number" id="qtdCheesecake"><br><br>
+
+  <h3>Preço Unitário de Cada Doce</h3>
+  Macaron (R$): <input type="number" id="precoMacaron" step="0.01"><br><br>
+  Brigadeiro Gourmet (R$): <input type="number" id="precoBrigadeiro" step="0.01"><br><br>
+  Cupcake (R$): <input type="number" id="precoCupcake" step="0.01"><br><br>
+  Cheesecake (R$): <input type="number" id="precoCheesecake" step="0.01"><br><br>
+
+  <button onclick="verificarVendas()">Verificar Vendas</button>
+
+  <div id="resultado"></div>
+</body>
+</html>
+<script>
+  function verificarVendas() {
+    var qtdMac = Number(qtdMacaron.value),
+        qtdBri = Number(qtdBrigadeiro.value),
+        qtdCup = Number(qtdCupcake.value),
+        qtdChe = Number(qtdCheesecake.value);
+
+    var precoMac = Number(precoMacaron.value),
+        precoBri = Number(precoBrigadeiro.value),
+        precoCup = Number(precoCupcake.value),
+        precoChe = Number(precoCheesecake.value);
+    
+    var saida = ``,
+        contador = 1,
+        total = 0;
+      
+
+
+    if (qtdMac >= 0 && qtdBri >= 0 && qtdCup >= 0 && qtdChe >= 0 &&
+        precoMac >= 0 && precoBri >= 0 && precoCup >= 0 && precoChe >= 0) {
+      // Macarons
+      var i = 1;
+      while (i <= qtdMac) {
+        saida += `Venda ${contador} - <img src='https://png.pngtree.com/png-clipart/20241106/original/pngtree-pink-macaron-isolated-on-black-background-stock-photo-clipart-png-image_16706773.png' width='100'> - R$ ${precoMac.toFixed(2)}<br>`;
+        contador += 1;
+        total += precoMac;
+        i++;
+      }
+      // Brigadeiros
+      i = 1;
+      while (i <= qtdBri) {
+        saida += `Venda ${contador} - <img src='https://img.freepik.com/fotos-premium/brigadeiro-doce-brasileiro-tipico-muito-consumido-em-festas-infantis-isoladas-em-fundo-branco_222945-131.jpg?semt=ais_hybrid&w=740&q=80' width='100'> - R$ ${precoBri.toFixed(2)}<br>`;
+        contador++;
+        total += precoBri;
+        i++;
+      }
+      // Cupcakes
+      i = 1;
+      while (i <= qtdCup) {
+        saida += `Venda ${contador} - <img src='https://static.vecteezy.com/system/resources/thumbnails/041/933/414/small/ai-generated-chocolate-cupcake-with-chocolate-frosting-on-transparent-background-free-png.png' width='100'> - R$ ${precoCup.toFixed(2)}<br>`;
+        contador++;
+        total += precoCup;
+        i++;
+      }
+      // Cheesecakes
+      i = 1;
+      while (i <= qtdChe) {
+        saida += `Venda ${contador} - <img src='https://png.pngtree.com/png-clipart/20250127/original/pngtree-slice-of-strawberry-cheesecake-with-creamy-filling-and-golden-crust-png-image_20350204.png' width='100'> - R$ ${precoChe.toFixed(2)}<br>`;
+        contador++;
+        total += precoChe;
+        i++;
+      }
+
+      saida += "<br>Com a quantidade de " + qtdMac + " Macarons, " +
+              qtdBri + " Brigadeiros, " + qtdCup + " Cupcakes e " +
+              qtdChe + " Cheesecakes, a venda totalizará R$" + total.toFixed(2);
+
+      resultado.innerHTML = saida;
+    } else {
+      resultado.innerHTML = "Erro: valores negativos não são permitidos!";
+    }
+
+    
+  }
+</script>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>21. Divisibilidade</h1>
+
+    <label>Digite um número positivo (limite da contagem):</label>
+    <input id="input_limite" type="text"><br><br>
+
+    <label>Digite um número (divisor) para teste de divisibilidade:</label>
+    <input id="input_divisor" type="text"><br><br>
+
+    <button onclick="somarMultiplos()">Somar Números</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function somarMultiplos() {
+        var limite = Number(input_limite.value),
+            divisor = Number(input_divisor.value),
+            mensagem = "",
+            cont = 1,
+            soma = 0;
+
+        if (limite > 0 && divisor >= 1 && divisor <= limite) {
+            mensagem += `Números múltiplos de ${divisor} entre 1 e ${limite}:<br><br>`;
+
+            while (cont <= limite) {
+                if (cont % divisor == 0) {
+                    mensagem += cont + "<br>";
+                    soma += cont;
+                }
+                cont++;
+            }
+            mensagem += `<br><b>Soma dos múltiplos: ${soma}</b>`;
+        } else {
+            alert("Por favor, digite valores válidos! O divisor deve estar entre 1 e o limite informado.");
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

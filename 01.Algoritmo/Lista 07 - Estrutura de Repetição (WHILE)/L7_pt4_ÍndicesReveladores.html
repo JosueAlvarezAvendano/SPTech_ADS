@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Índices Reveladores</h1>
+
+    <label>Digite uma frase:</label>
+    <input id="input_frase" type="text"><br><br>
+
+    <label>Digite a letra a ser procurada:</label>
+    <input id="input_letra" type="text" maxlength="1"><br><br>
+
+    <button onclick="revelarIndices()">Revelar Índices</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function revelarIndices() {
+        var frase = input_frase.value.toLowerCase(),
+            letra = input_letra.value.toLowerCase(),
+            cont = 0,
+            indices = "",
+            qtd = 0,
+            mensagem = "";
+
+        while (cont < frase.length) {
+            if (frase[cont] == letra) {
+                indices += `${cont}, `;
+                qtd++;
+            }
+            cont++;
+        }
+
+        if (qtd > 0) {
+            mensagem = `A letra "${letra}" aparece nas posições: ${indices}<br>`;
+            mensagem += `Quantidade de vezes que aparece: ${qtd}`;
+        } else {
+            mensagem = "Essa letra está em outro universo!";
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

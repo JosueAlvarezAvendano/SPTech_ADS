@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>17. Divisibilidade</h1>
+
+    <label for="input_inicio">Digite o início do intervalo:</label>
+    <input id="input_inicio" type="text"><br><br>
+
+    <label for="input_fim">Digite o fim do intervalo:</label>
+    <input id="input_fim" type="text"><br><br>
+
+    <label for="input_divisor">Digite o número para teste (3 a 13):</label>
+    <input id="input_divisor" type="text"><br><br>
+
+    <button onclick="divisivel()">Divisível</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function divisivel() {
+            var inicio = Number(input_inicio.value),
+                fim = Number(input_fim.value),
+                divisor = Number(input_divisor.value),
+                mensagem = ``,
+                cont = inicio;
+
+            if (divisor >= 3 && divisor <= 13) {
+                while (cont <= fim) {
+                    if (cont % divisor != 0) {
+                        mensagem += `${cont} `;
+                    }
+                    cont++;
+                }                
+            } else {
+                alert("O número para teste deve estar entre 3 e 13!");                
+            }
+
+            div_mensagem.innerHTML = mensagem;
+        }
+</script>
