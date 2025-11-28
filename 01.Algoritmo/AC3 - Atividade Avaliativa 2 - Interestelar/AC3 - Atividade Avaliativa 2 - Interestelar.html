@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Interestelar</h1>
 
@@ -31,8 +33,9 @@
     <button onclick="consultaAstronauta()">Consulta Astronauta</button>
     <br><br>
     <div id="div_mensagem"></div>
-    
+
 </body>
+
 </html>
 <script>
     var registroViagens = [
@@ -51,16 +54,16 @@
             qtdDias = Number(input_qtdDias.value),
             qtdHoras = Number(input_qtdHoras.value),
             qtdMinutos = Number(input_qtdMinutos.value);
-        
+
         var registroViagem = [];
-        
+
         // VALIDAÇÃO DOS CAMPOS
-        if (nomeAstronauta != '' && nomePlaneta != '' && tempoRelativo > 0 && 
+        if (nomeAstronauta != '' && nomePlaneta != '' && tempoRelativo > 0 &&
             (qtdDias > 0 || qtdHoras > 0 || qtdMinutos > 0)) {
 
 
             // CADASTRANDO VIAGEM NO REGISTRO DE VIAGENS
-            registroViagem = [nomeAstronauta , nomePlaneta, tempoRelativo, qtdDias, qtdHoras, qtdMinutos];
+            registroViagem = [nomeAstronauta, nomePlaneta, tempoRelativo, qtdDias, qtdHoras, qtdMinutos];
             registroViagens.push(registroViagem);
 
 
@@ -71,7 +74,7 @@
             input_qtdDias.value = '';
             input_qtdHoras.value = '';
             input_qtdMinutos.value = '';
-            
+
         } else {
             alert("Preencha os campos corretamente e informe um tempo de viagem válido!")
         }
@@ -83,10 +86,10 @@
         div_mensagem.innerHTML = `
         Foram registrados ${registroViagens.length} viagens, detalhadas a seguir:<br><br>
         `;
-        
+
         for (var i = 0; i < registroViagens.length; i++) {
-                    
-            var minutoTotal = 1440 * registroViagens[i][3] + 60 * registroViagens[i][4] + registroViagens[i][5]; 
+
+            var minutoTotal = 1440 * registroViagens[i][3] + 60 * registroViagens[i][4] + registroViagens[i][5];
             var ano = minutoTotal * registroViagens[i][2];
             var tempoFinal = ano / 525600;
 
@@ -97,7 +100,7 @@
             A criança que nasceu quando ele saiu provavelmente está assim hoje:<br><br>
             `;
 
-            if ( tempoFinal <= 13) {
+            if (tempoFinal <= 13) {
                 div_mensagem.innerHTML += `<img src="até 13 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
             } else if (tempoFinal <= 30) {
                 div_mensagem.innerHTML += `<img src="13 anos até 30 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
@@ -111,7 +114,7 @@
         }
     }
 
-    function consultaAstronauta () {
+    function consultaAstronauta() {
         var nomeAstronauta = prompt('Digite o nome do astronauta:'),
             astronautaRegistrado = false,
             viagensAstronauta = [];
@@ -120,7 +123,7 @@
         for (var i = 0; i < registroViagens.length; i++) {
 
             /* SEPARA CADA LISTA INTERNADA DO REGISTRO DE VIAGENS PARA CONSULTA*/
-            registroViagem = registroViagens[i]; 
+            registroViagem = registroViagens[i];
 
             // VERIFICA SE O NOME DO ASTRONAUTA BATE COM O CADASTRADO
             if (registroViagem[0] == nomeAstronauta) {
@@ -137,7 +140,9 @@
 
             } else if (viagensAstronauta.length > 1) {
                 var maiorTempo = 0,
-                    menorTempo = 0;
+                    segundoMaiorTempo = 0,
+                    menorTempo = 0,
+                    segundoMenorTempo = 0;
 
                 div_mensagem.innerHTML = `Astronauta ${nomeAstronauta} viajou para:<br><br>`;
 
@@ -145,18 +150,23 @@
 
                     var minutoTotal = (viagensAstronauta[i][3] * 1440 + viagensAstronauta[i][4] * 60 + viagensAstronauta[i][5]) * viagensAstronauta[i][2];
 
-                    if (i == 0) {
-                        maiorTempo = minutoTotal;
-                        menorTempo = minutoTotal;
 
-                    } else {
-                        if (minutoTotal > maiorTempo) {
-                            maiorTempo = minutoTotal;
+                    // VERIFICANDO O MAIOR E MENOR TEMPO DE VIAGEM
 
-                        } else if ( minutoTotal < menorTempo) {
-                            menorTempo = minutoTotal
-                        }
+                    if (minutoTotal > maiorTempo) {
+                        segundoMaiorTempo = maiorTempo; // O antigo maior tempo agora é o segundo maior
+                        maiorTempo = minutoTotal;       // O novo valor é o maior tempo
+
+                    } else if (minutoTotal == maiorTempo) {
+                        segundoMaiorTempo = minutoTotal;
+
+                    } else if (minutoTotal > segundoMaiorTempo && minutoTotal < maiorTempo) {
+                        // Se não for o maior, mas for maior que o segundo maior
+                        segundoMaiorTempo = minutoTotal;
                     }
+
+
+
 
                     div_mensagem.innerHTML += `
                         ${i + 1}ª viagem - planeta ${viagensAstronauta[i][1]} com o tempo na terra de ${minutoTotal} minutos<br>`;
