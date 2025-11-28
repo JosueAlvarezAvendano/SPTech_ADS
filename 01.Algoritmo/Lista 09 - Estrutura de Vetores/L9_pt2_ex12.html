@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>12. Cadastro de Filhos sem Repetição e Estimativa de Custo Escolar</h1>
+
+    <label for="input_filho">Digite o nome do seu filho:</label>
+    <input id="input_filho" type="text">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizarFamilia()">Atualizar Família</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    var filhos = []
+
+    function cadastrar() {
+        var filho = input_filho.value;
+        if (filhos.includes(filho)) {
+            alert(`O nome do filho já está cadastrado!`)
+            input_filho.value;
+        } else {
+            filhos.push(filho);
+            input_filho.value = '';
+        }
+    }
+
+    function atualizarFamilia() {
+        div_mensagem.innerHTML = `
+        
+        Você tem ${filhos.length} filhos<br><br>
+        
+        Seu custo mensal será aproximadamente R$${(filhos.length * 3000).toFixed(2)} <br>se colocá-los em escola particular ou R$${(filhos.length * 1500).toFixed(2)} se eles estudarem em escola pública
+        `;
+    }
+
+</script>

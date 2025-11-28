@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>15. Sistema de Cadastro de Produtos com Relatório de Preço de Venda</h1>
+
+    <label for="">Digite o nome do produto:</label>
+    <input id="input_produto" type="text">
+    <br><br>
+    <label for="">Digite o preço da compra do produto:</label>
+    <input id="input_preco" type="text">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="relatorioEstoque()">Relatório de Estoque</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+    var produtos = [];
+
+    function cadastrar() {
+        var produto = input_produto.value,
+            preco = Number(input_preco.value);
+        produtos.push([produto, preco]);
+
+        input_produto.value = '';
+        input_preco.value = '';
+    }
+
+    function relatorioEstoque() {
+        div_mensagem.innerHTML = `Total de produtos: ${produtos.length}<br>`
+
+        for (var p = 0; p < produtos.length; p++) { 
+            div_mensagem.innerHTML += `Produto ${p + 1}: ${produtos[p][0]}<br>
+                                       Preço de compra: R$ ${produtos[p][1].toFixed(2)}. Vender por ${(produtos[p][1] * 1.25).toFixed(2)}<br>`;
+        }
+    }
+</script>

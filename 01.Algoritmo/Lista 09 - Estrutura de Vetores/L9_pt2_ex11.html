@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>11. Controle de Estoque de Produtos com Cálculo de Valor Total</h1>
+
+    <label for="input_preco">Qual é o preço do produto:</label>
+    <input id="input_preco" type="text">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Estoque</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    precos = [];
+    somaTotal = 0;
+
+    function cadastrar() {
+        var preco = Number(input_preco.value);
+        precos.push(preco);
+        somaTotal += preco
+        input_preco.value = ``;
+        div_mensagem.innerHTML = `Preço cadastrado com sucesso!`;
+    }
+
+    function atualizar() {
+        div_mensagem.innerHTML = `LISTA DE PREÇOS CADASTRADOS:<br><br>`;
+        for (var p = precos.length - 1; p >= 0; p--) {
+            div_mensagem.innerHTML += `- R$ ${precos[p].toFixed(2)}<br>`;
+        }
+
+        div_mensagem.innerHTML += `<br>Você tem ${precos.length} produtos cadastrados em estoque<br>
+                                    Seu estoque vale R$ ${somaTotal.toFixed(2)}`;
+    }
+</script>

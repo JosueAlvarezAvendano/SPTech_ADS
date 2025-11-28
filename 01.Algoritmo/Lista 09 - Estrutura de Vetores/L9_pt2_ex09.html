@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>9. Cadastro de Projetos e Classificação de Experiência Profissional</h1>
+
+    <label for="input_proejto">Nome do projeto em que você já trabalhou:</label>
+    <input id="input_projeto" type="text">
+    <br><br>
+    <button onclick="registrarProjeto()">Registrar Projeto</button>
+    <button onclick="mostrarProjetos()">Mostrar Projetos</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+
+</body>
+</html>
+<script>
+    var projetos = []
+
+    function registrarProjeto() {
+        var projeto = input_projeto.value;
+        projetos.push(projeto);
+        input_projeto.value = ``;
+
+        if ((projetos.length - 1) >= 13) {
+            div_mensagem.innerHTML = `Você já fez ${projetos.length} projetos. Por isso você é um profissional Sênior<br><br>`;
+        } else if ((projetos.length - 1) >= 5) {
+            div_mensagem.innerHTML = `Você já fez ${projetos.length} projetos. Por isso você é um profissional Pleno<br><br>`;
+        } else {
+            div_mensagem.innerHTML = `Você já fez ${projetos.length} projetos. Por isso você é um profissional Júnior<br><br>`;
+        }
+    }
+    
+    function mostrarProjetos() {
+        div_mensagem.innerHTML += `LISTA DE PROJETOS:<br><br>`;
+        for (var p = projetos.length - 1; p >= 0; p--) {
+            div_mensagem.innerHTML += `- ${projetos[p]}<br>`;
+        }
+        
+    }
+</script>

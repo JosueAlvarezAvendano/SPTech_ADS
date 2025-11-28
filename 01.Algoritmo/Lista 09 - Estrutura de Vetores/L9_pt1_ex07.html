@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>7. Filmes em Cores: Azul e Vermelho Alternados</h1>
+
+    <label for="input_filme">Digite o nome do seu filme favorito:</label>
+    <input id="input_filme" type="text">
+    <br><br>
+    <button onclick="cadastrar()">Cadastrar</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    var filmes = []
+
+    function cadastrar() {
+        var filme = input_filme.value;
+        filmes.push(filme);
+        input_filme.value = '';
+        
+        if ( filmes.length % 2 == 0) {
+            div_mensagem.innerHTML += `<span style="color: blue;">${filmes.length}º - ${filmes[filmes.length - 1]}<span><br>`;
+        } else {
+            div_mensagem.innerHTML += `<span style="color: red;">${filmes.length}º - ${filmes[filmes.length - 1]}<span><br>`;
+        }
+    }
+</script>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Interestelar</h1>
+
+    <label for="input_nomeAstronauta">Nome do Astronauta:</label>
+    <input id="input_nomeAstronauta" type="text">
+    <br><br>
+    <label for="input_nomePlaneta">Nome do Planeta:</label>
+    <input id="input_nomePlaneta" type="text">
+    <br><br>
+    <label for="input_tempoRelativo">Tempo relativo do planeta:</label>
+    <input id="input_tempoRelativo" type="number" min="0">
+    <br><br>
+    <label for="input_qtdDias">Quantidade de Dias:</label>
+    <input id="input_qtdDias" type="number" min="0">
+    <br><br>
+    <label for="input_qtdHoras">Quantidade de Horas:</label>
+    <input id="input_qtdHoras" type="number" min="0">
+    <br><br>
+    <label for="input_qtdMinutos">Quantidade de Minutos:</label>
+    <input id="input_qtdMinutos" type="number" min="0">
+    <br><br>
+    <button onclick="registrarViagem()">Registrar Viagem</button>
+    <button onclick="relatorioViagens()">Relatório de Viagens</button>
+    <button onclick="consultaAstronauta()">Consulta Astronauta</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+    
+</body>
+</html>
+<script>
+    var registroViagens = [
+        ['Josué', 'Marte', 23, 365, 0, 0],
+        ['Lucas', 'Mercurio', 52, 365, 0, 0],
+        ['Josué', 'Mercurio', 2, 365, 0, 0],
+        ['Josué', 'Venus', 33, 365, 0, 0],
+        ['Josué', 'Solaris', 72, 365, 0, 0],
+    ];
+
+
+    function registrarViagem() {
+        var nomeAstronauta = input_nomeAstronauta.value,
+            nomePlaneta = input_nomePlaneta.value,
+            tempoRelativo = Number(input_tempoRelativo.value),
+            qtdDias = Number(input_qtdDias.value),
+            qtdHoras = Number(input_qtdHoras.value),
+            qtdMinutos = Number(input_qtdMinutos.value);
+        
+        var registroViagem = [];
+        
+        // VALIDAÇÃO DOS CAMPOS
+        if (nomeAstronauta != '' && nomePlaneta != '' && tempoRelativo > 0 && 
+            (qtdDias > 0 || qtdHoras > 0 || qtdMinutos > 0)) {
+
+
+            // CADASTRANDO VIAGEM NO REGISTRO DE VIAGENS
+            registroViagem = [nomeAstronauta , nomePlaneta, tempoRelativo, qtdDias, qtdHoras, qtdMinutos];
+            registroViagens.push(registroViagem);
+
+
+            // LIMPANDO INPUTS PARA NOVO CADASTRO
+            input_nomeAstronauta.value = '';
+            input_nomePlaneta.value = '';
+            input_tempoRelativo.value = '';
+            input_qtdDias.value = '';
+            input_qtdHoras.value = '';
+            input_qtdMinutos.value = '';
+            
+        } else {
+            alert("Preencha os campos corretamente e informe um tempo de viagem válido!")
+        }
+    }
+
+    function relatorioViagens() {
+        div_mensagem.innerHTML = '';
+
+        div_mensagem.innerHTML = `
+        Foram registrados ${registroViagens.length} viagens, detalhadas a seguir:<br><br>
+        `;
+        
+        for (var i = 0; i < registroViagens.length; i++) {
+                    
+            var minutoTotal = 1440 * registroViagens[i][3] + 60 * registroViagens[i][4] + registroViagens[i][5]; 
+            var ano = minutoTotal * registroViagens[i][2];
+            var tempoFinal = ano / 525600;
+
+            div_mensagem.innerHTML += `
+
+            Viagem ${i + 1}:<br>
+            Astronauta ${registroViagens[i][0]} viajou para o planeta ${registroViagens[i][1]} e ficou fora por pelo menos ${tempoFinal.toFixed(0)} anos no tempo da Terra.<br>
+            A criança que nasceu quando ele saiu provavelmente está assim hoje:<br><br>
+            `;
+
+            if ( tempoFinal <= 13) {
+                div_mensagem.innerHTML += `<img src="até 13 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
+            } else if (tempoFinal <= 30) {
+                div_mensagem.innerHTML += `<img src="13 anos até 30 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
+            } else if (tempoFinal <= 65) {
+                div_mensagem.innerHTML += `<img src="30 anos até 65 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
+            } else if (tempoFinal <= 100) {
+                div_mensagem.innerHTML += `<img src="65 anos até 100 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
+            } else {
+                div_mensagem.innerHTML += `<img src="mais de 100 anos no tempo da Terra.png" alt="" width="150px"><br><br>`;
+            }
+        }
+    }
+
+    function consultaAstronauta () {
+        var nomeAstronauta = prompt('Digite o nome do astronauta:'),
+            astronautaRegistrado = false,
+            viagensAstronauta = [];
+
+        // PERCORRE O REGSITRO DE VIAGENS
+        for (var i = 0; i < registroViagens.length; i++) {
+
+            /* SEPARA CADA LISTA INTERNADA DO REGISTRO DE VIAGENS PARA CONSULTA*/
+            registroViagem = registroViagens[i]; 
+
+            // VERIFICA SE O NOME DO ASTRONAUTA BATE COM O CADASTRADO
+            if (registroViagem[0] == nomeAstronauta) {
+                astronautaRegistrado = true /* SE JÁ FEZ VIAGEM = TRUE */
+                viagensAstronauta.push(registroViagem);
+            }
+        }
+
+        if (astronautaRegistrado) {
+            if (viagensAstronauta.length == 1) {
+                var minutoTotal = (viagensAstronauta[0][3] * 1440 + viagensAstronauta[0][4] * 60 + viagensAstronauta[0][5]) * viagensAstronauta[i][2];
+
+                div_mensagem.innerHTML = `Astronauta ${viagensAstronauta[0][0]} viajou para o planeta ${viagensAstronauta[0][1]} com o tempo na terra de ${minutoTotal} minutos`;
+
+            } else if (viagensAstronauta.length > 1) {
+                var maiorTempo = 0,
+                    menorTempo = 0;
+
+                div_mensagem.innerHTML = `Astronauta ${nomeAstronauta} viajou para:<br><br>`;
+
+                for (var i = 0; i < viagensAstronauta.length; i++) {
+
+                    var minutoTotal = (viagensAstronauta[i][3] * 1440 + viagensAstronauta[i][4] * 60 + viagensAstronauta[i][5]) * viagensAstronauta[i][2];
+
+                    if (i == 0) {
+                        maiorTempo = minutoTotal;
+                        menorTempo = minutoTotal;
+
+                    } else {
+                        if (minutoTotal > maiorTempo) {
+                            maiorTempo = minutoTotal;
+
+                        } else if ( minutoTotal < menorTempo) {
+                            menorTempo = minutoTotal
+                        }
+                    }
+
+                    div_mensagem.innerHTML += `
+                        ${i + 1}ª viagem - planeta ${viagensAstronauta[i][1]} com o tempo na terra de ${minutoTotal} minutos<br>`;
+                }
+
+
+
+            }
+        } else {
+            alert(`O astronauta ${nomeAstronauta} não tem viagens registradas`);
+        }
+
+
+    }
+
+</script>

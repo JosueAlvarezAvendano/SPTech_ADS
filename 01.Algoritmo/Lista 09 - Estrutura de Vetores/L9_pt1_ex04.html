@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>4. Top Filmes Favoritos: Do Mais Amado ao Menos</h1>
+
+    <label for="input_filme">Digite o nome do seu filme favorito:</label>
+    <input id="input_filme" type="text">
+    <br><br>
+    <button onclick="cadastrarFilme()">Cadastrar Filme</button>
+    <button onclick="verFavoritos()">Ver Favoritos</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    var filmes = []
+    function cadastrarFilme() {
+        var filme = input_filme.value;
+        filmes.push(filme);
+        input_filme.value = '';
+    }
+
+    function verFavoritos() {
+        div_mensagem.innerHTML += `FILMES FAVORITOS<br><br>`
+        for (var f = 0; f < filmes.length; f++) {
+            div_mensagem.innerHTML += `- ${filmes[f]}<br>`;
+        }
+        div_mensagem.innerHTML += `
+        <br>TOTAL: ${filmes.length}<br>
+        - O filme que mais gosta: ${filmes[0]}<br>
+        - O filme que menos gosta: ${filmes[filmes.length]}
+        `;
+    }
+</script>

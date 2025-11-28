@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>2. Capacidade Flexível</h1>
+
+    <label for="input_qtdPassageiros">Quantos passageiros cabem no carro:</label>
+    <input id="input_qtdPassageiros" type="text"><br><br>
+
+    <label for="input_numPassageiros">Quantas pessoas vão entrar no carro:</label>
+    <input id="input_numPassageiros" type="text"><br><br>
+
+    <button onclick="PartiuCarona()">#Partiu Carona</button>
+    <br><br>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+
+    function PartiuCarona() {
+        var numPassageiros = Number(input_numPassageiros.value),
+            qtdPassageiros = Number(input_qtdPassageiros.value);
+        
+        div_mensagem.innerHTML = ``; // Limpar o histórico da mensagem
+
+        for (var Passageiro = 1; Passageiro <= numPassageiros; Passageiro++) {
+            if (Passageiro == 1) {
+                div_mensagem.innerHTML += `Entrou o ${Passageiro}º passageiro (que é o(a) motorista)<br>`;
+            } else if (Passageiro > 1 && Passageiro <= qtdPassageiros) {
+                div_mensagem.innerHTML += `Entrou o ${Passageiro}º passageiro<br>`;
+            } else if (Passageiro > qtdPassageiros) {
+                div_mensagem.innerHTML += `O ${Passageiro}º passageiro terá que esperar!<br>`;
+            }
+        }
+    }
+</script>

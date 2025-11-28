@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>6. Bônus Bancário Inteligente</h1>
+
+    <label for="input_qtdDeposito">Informe quantos depósitos você fez no banco:</label>
+    <input id="input_qtdDeposito" type="text"><br><br>
+
+    <label for="input_valorDeposito">Informe o valor de cada depósito:</label>
+    <input id="input_valorDeposito" type="text">
+
+    <button onclick="AcompanharGrana()">Acompanhar grana</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function AcompanharGrana() {
+        var qtdDeposito = Number(input_qtdDeposito.value),
+            valorDeposito = Number(input_valorDeposito.value),
+            saldo = 0;
+        
+        div_mensagem.innerHTML = `<br>`; // Limpara o histórico da mensagem
+
+        for (var deposito = 1; deposito <= qtdDeposito; deposito++) {
+            
+            if (deposito % 3 == 0) {
+                saldo = (saldo + valorDeposito) * 1.01;
+                div_mensagem.innerHTML += `${deposito}º Mês: R$ ${saldo.toFixed(2)}<br><br>`;
+            } else {
+                saldo += valorDeposito;
+                div_mensagem.innerHTML += `${deposito}º Mês: R$ ${saldo.toFixed(2)}<br><br>`;
+            }
+            
+        }
+        div_mensagem.innerHTML += `Total guardado: R$${saldo.toFixed(2)}`
+    }
+</script>

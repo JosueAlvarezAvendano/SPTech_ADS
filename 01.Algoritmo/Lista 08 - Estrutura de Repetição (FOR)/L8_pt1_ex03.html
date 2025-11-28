@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>3. Contador de Coca-Colas</h1>
+
+    <label for="input_qtdCocaCola">Quantas "Coca-Cola" você acha que já bebeu na vida:</label>
+    <input id="input_qtdCocaCola" type="text"><br><br>
+
+    <button onclick="VerQuantidade()">Ver a quantidade</button>
+    <div id="div_imagem"></div>
+</body>
+</html>
+<script>
+    function VerQuantidade() {
+        var qtdCocaCola = Number(input_qtdCocaCola.value);
+        
+        div_imagem.innerHTML = ``; //Limpara o histórico das imagens
+
+        for (var latinha = 1; latinha <= qtdCocaCola; latinha++) {
+            div_imagem.innerHTML += `<img src="https://www.thebakers.com.br/wp-content/uploads/2019/05/coca-600x540-600x540.png" alt="" width="100px">`;
+        }
+    }
+</script>

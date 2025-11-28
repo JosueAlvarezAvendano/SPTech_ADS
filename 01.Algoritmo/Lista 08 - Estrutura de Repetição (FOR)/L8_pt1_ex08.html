@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>8. FizzBuzz</h1>
+
+    <button onclick="FizzBuzz()">FizzBuzz</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function FizzBuzz() {
+        for (var num = 1; num <= 100; num++) {
+            if (num % 3 == 0 && num % 5 == 0) {
+                div_mensagem.innerHTML += `FizzBuzz<br>`;
+            } else if (num % 3 == 0) {
+                div_mensagem.innerHTML += `Fizz<br>`;
+            } else if (num % 5 == 0){
+                div_mensagem.innerHTML += `Buzz<br>`;
+            } else {
+                div_mensagem.innerHTML += `${num}<br>`;
+            }
+        }
+    }
+</script>
